@@ -34,20 +34,16 @@
         <div class="w-container">
             <%-- paso 3 actualizar los nuevos datos en la base de datos--%>
             <%
-                if (request.getParameter("bt_modificar") != null) {
+                if (request.getParameter("bt_eliminar") != null) {
                     try {
                         Dba db = new Dba(application.getRealPath("") + "/daw.mdb");
                         db.conectar();
 
-                        int contador = db.query.executeUpdate("UPDATE usuarios "
-                                + "SET nombres='" + request.getParameter("ti_nombre") + "',   "
-                                + "apellidos='" + request.getParameter("ti_apellidos") + "',   "
-                                + "usuario='" + request.getParameter("ti_usuario") + "',       "
-                                + "password='" + request.getParameter("ti_password") + "'"
+                        int contador = db.query.executeUpdate("DELETE FROM usuarios "
                                 + "WHERE cuenta='" + request.getParameter("ti_cuenta") + "' ");
 
                         if (contador >= 1) {
-                            out.print("<script>alert('el usuario fue modificado correctamente');</script>");
+                            out.print("<script>alert('el usuario fue eliminado correctamente');</script>");
                         }
                         db.commit();
                         db.desconectar();
@@ -59,10 +55,10 @@
             <%-- FIN paso 3--%>
 
             <%-- paso #1 listar los usuarios--%>
-            <h1>Modificar Usuario</h1>
+            <h1>Eliminar Usuario</h1>
             <p align="center">
                 <b>
-                    <font face="Arial" color="#FFFFFF" size="12">Modificar Producto
+                    <font face="Arial" color="#FFFFFF" size="12">Eliminar Usuario
                     </font>
                 </b>
             </p>
@@ -92,7 +88,7 @@
                         <td><%=v_cuenta%></td>
                         <td><%=v_nombres%></td>
                         <td><%=v_apellidos%></td>
-                        <td><a href="modificar.jsp?p_cuenta=<%=v_cuenta%>&p_nombres=<%=v_nombres%>&p_apellidos=<%=v_apellidos%>&p_usuario=<%=v_usuario%>&p_password=<%=v_password%>&p_editar=1">modificar</a></td>
+                        <td><a href="eliminar.jsp?p_cuenta=<%=v_cuenta%>&p_eliminar=1">Eliminar</a></td>
                     </tr>
                     <%
                             }
@@ -107,33 +103,19 @@
 
             <%
                 //paso #2 si preciono el link para modificar
-                if (request.getParameter("p_editar") != null) {
+                if (request.getParameter("p_eliminar") != null) {
             %>
             <br>
             <hr>
-            <form name="f1" action="modificar.jsp" method="POST">
+            <form name="f1" action="eliminar.jsp" method="POST">
                 <table border="0">
                     <tbody>
                         <tr>
                             <td>Cuenta</td>                        
                             <td><input type="text" name="ti_cuenta" value="<%= request.getParameter("p_cuenta")%>" readonly="readonly"  />   </td>
-                            <td>Nombre</td>
-                            <td><input type="text" name="ti_nombre" value="<%= request.getParameter("p_nombres")%>" /></td>
                         </tr>
                         <tr>
-                            <td>Apellidos</td>
-                            <td><input type="text" name="ti_apellidos" value="<%= request.getParameter("p_apellidos")%>" /></td>
-                            <td>Usuario</td>
-                            <td><input type="text" name="ti_usuario" value="<%= request.getParameter("p_usuario")%>" /></td>
-                        </tr>
-                        <tr>
-                            <td>Password</td>
-                            <td><input type="text" name="ti_password" value="<%= request.getParameter("p_password")%>" /></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td> <input type="submit" value="modificar" name="bt_modificar" />   </td>
+                            <td> <input type="submit" value="confirmar eliminar" name="bt_eliminar" />   </td>
                             <td></td>
                             <td></td>
                             <td></td>

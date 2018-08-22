@@ -22,44 +22,59 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Desarrollo de Aplicaciones Web</title>
+        <link href="tareadevappvan_file.css" rel="stylesheet" type="text/css"/>
+        <style>
+        body {
+            background-image: url("image.jpg");
+        }
+        div {
+            border-style: solid;
+            border-color: white;
+        }
+        </style>
     </head>
     <body>
-        Clase: <%=request.getParameter("clase")%><br>
-        Campus: <%=request.getParameter("campus")%>        
-        <h4>LISTA DE USUARIOS</h4>         
-        <table border="1px">
-            <thead>
-                <tr>
-                    <th>CUENTA</th>
-                    <th>NOMBRES</th>
-                    <th>APELLIDOS</th>
-                    <th>USUARIOS</th>
-                    <th>PASSWORD</th>
-                </tr>
-            </thead>
-            <tbody>
-                <%
-                    try {
-                        Dba db = new Dba(application.getRealPath("") + "/daw.mdb");
-                        db.conectar();
-                        db.query.execute("select cuenta, nombres, apellidos,usuario,password from usuarios");
-                        ResultSet rs = db.query.getResultSet();
-                        String centinela = "n";
-                        while (rs.next()) {%>
-                <tr>
-                    <td><%=rs.getString(1)%></td>
-                    <td><%=rs.getString(2)%></td>
-                    <td><%=rs.getString(3)%></td>
-                    <td><%=rs.getString(4)%></td>
-                    <td><%=rs.getString(5)%></td> 
-                </tr>         
-                <%
+        <div class="w-container">
+            Clase: <%=request.getParameter("clase")%><br>
+            Campus: <%=request.getParameter("campus")%>        
+            <h4>LISTA DE USUARIOS</h4>         
+            <table border="1px">
+                <thead>
+                    <tr>
+                        <th>CUENTA</th>
+                        <th>NOMBRES</th>
+                        <th>APELLIDOS</th>
+                        <th>USUARIOS</th>
+                        <th>PASSWORD</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%
+                        try {
+                            Dba db = new Dba(application.getRealPath("") + "/daw.mdb");
+                            db.conectar();
+                            db.query.execute("select cuenta, nombres, apellidos,usuario,password from usuarios");
+                            ResultSet rs = db.query.getResultSet();
+                            String centinela = "n";
+                            while (rs.next()) {%>
+                    <tr>
+                        <td><%=rs.getString(1)%></td>
+                        <td><%=rs.getString(2)%></td>
+                        <td><%=rs.getString(3)%></td>
+                        <td><%=rs.getString(4)%></td>
+                        <td><%=rs.getString(5)%></td> 
+                    </tr>         
+                    <%
+                            }
+                            db.desconectar();
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
-                        db.desconectar();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                %>   
-        </table>
+                    %>   
+            </table>
+            <a href="principal.jsp">
+               <input type="button" value="Regresar" />
+            </a>
+        </div>
     </body>
 </html>

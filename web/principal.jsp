@@ -20,26 +20,34 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Desarrollo de Aplicaciones Web</title>
+        <link href="tareadevappvan_file.css" rel="stylesheet" type="text/css"/>
+        <style>
+        body {
+            background-image: url("image.jpg");
+        }
+        </style>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <a href="listar.jsp?clase=daw&campus=ceutec">
-            Listar
-        </a>
-        <br>
-        <a href="nuevo.jsp">
-            Nuevo
-        </a>
-        <br>
-        <a href="modificar.jsp">
-            Modificar
-        </a>
-        <br>
-        <a href="eliminar.jsp">
-            Eliminar
-        </a>
-        <br>
-        <%// explicar los links con parametros%>
-        <%//<a href="curso.jsp?g_nombre=programacionI&g_semestre=2"> ir a page </a>%>
+        <div class="w-container">
+            <h1>Hello World!</h1>
+            <a href="listar.jsp?clase=daw&campus=ceutec">
+                Listar
+            </a>
+            <br>
+            <a href="nuevo.jsp">
+                Nuevo
+            </a>
+            <br>
+            <a href="modificar.jsp">
+                Modificar
+            </a>
+            <br>
+            <a href="eliminar.jsp">
+                Eliminar
+            </a>
+            <br>
+            <%// explicar los links con parametros%>
+            <%//<a href="curso.jsp?g_nombre=programacionI&g_semestre=2"> ir a page </a>%>
+        </div>
     </body>
 </html>
